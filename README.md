@@ -15,11 +15,14 @@ This is a Google Docs Add-on designed for educators, aiming to solve the issue o
 - **☁️ 完全本地運算**：所有的處理都在 Google Apps Script 環境內完成，確保隱私。
 
 ## 支援與回饋 Support & Feedback
-如果您有任何問題或建議，歡迎透過電子郵件與我聯絡：
-If you have any questions or suggestions, please contact me via email:
+如果您有任何問題或建議，歡迎透過以下表單與我聯絡：
+If you have any questions or suggestions, please contact me via the following form:
 
-**開發者：** 洪楷量 (Hung, Kai-Liang)
-**聯絡信箱：** [brianhung0975@gmail.com](mailto:brianhung0975@gmail.com)
+**支援表單 Support Form：** [Google 表單 (Google Forms)](https://forms.gle/PdeWb9z8v6pLjBLv7)
+
+## 最近更新 Recent Updates
+- **📋 支援管道更新**：改用 Google 表單作為主要的支援與回饋管道，以便更好地追蹤您的建議。
+- **🚀 介面優化**：導覽列支援中英文換行，並加入微動態效果，提升視覺層次。
 
 ## 授權條款 License
 © 2026 破音字標注 Poyinzi. 版權所有。
