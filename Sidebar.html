@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bpmf+Zihi+Kai+Std&display=swap');
+
+      body { font-family: "Segoe UI", sans-serif; padding: 15px; color: #333;}
+      h3 { margin-top: 0; color: #1a73e8; font-size: 18px; }
+      p { font-size: 13px; color: #5f6368; line-height: 1.5; margin-bottom: 15px;}
+      
+      .btn-load { width: 100%; padding: 12px; background: #1a73e8; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 15px; font-weight: bold; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);}
+      .btn-load:hover { background: #1557b0; }
+
+      .button-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+      
+      .btn-variant { 
+        height: 80px; 
+        background: #f8f9fa; border: 1px solid #dadce0; border-radius: 8px; 
+        cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.2s;
+      }
+      .btn-variant:hover { background: #e8f0fe; border-color: #1a73e8; box-shadow: 0 2px 5px rgba(26,115,232,0.2);}
+
+      .magic-font { 
+        font-family: 'Bpmf Zihi Kai Std', '字嗨注音標楷', serif; 
+        font-size: 40px; 
+        line-height: 1;
+        color: #000;
+      }
+      
+      .variant-label { font-size: 11px; color: #80868b; margin-top: 5px; font-family: sans-serif;}
+
+      #status-box { padding: 10px; border-radius: 6px; font-size: 13px; font-weight: bold; text-align: center; min-height: 20px;}
+      .status-idle { background: transparent; }
+      .status-working { background: #fff3e0; color: #e65100; }
+      .status-success { background: #e6f4ea; color: #137333; }
+      .status-error { background: #fce8e6; color: #c5221f; }
+    </style>
+  </head>
+  <body>
+    <p>1. 反白文件中的字<br>2. 點擊「讀取」<br>3. 系統會自動列出該字的所有讀音，點擊即可套用<br>4. 若沒有出現你要的讀音，請在按一次「讀取」</p>
+    
+    <button class="btn-load" onclick="loadChar()">讀取</button>
+    
+    <div id="dynamic-buttons" class="button-grid"></div>
+
+    <div id="status-box" class="status-idle">等待操作...</div>
+
+    <script>
+      let currentChar = "";
+
+      function loadChar() {
+        showStatus('working', '讀取中...');
+        document.getElementById('dynamic-buttons').innerHTML = ''; 
+
+        google.script.run
+          .withSuccessHandler(function(response) {
+            if (response.error) {
+              showStatus('error', '❌ ' + response.error);
+            } else {
+              currentChar = response.char;
+              showStatus('working', '🕵️ 正在掃描更多讀音...');
+              
+              document.fonts.ready.then(function() {
+                
+                // --- 新增：第一次掃描 (背景暖身) ---
+                // 強制瀏覽器先將字體與變體繪製到記憶體中，但不顯示結果
+                const tempCanvas = document.createElement('canvas');
+                const tempCtx = tempCanvas.getContext('2d');
+                tempCtx.font = "50px 'Bpmf Zihi Kai Std'";
+                for (let i = 0; i <= 5; i++) {
+                  let testText = currentChar;
+                  if (i > 0) testText += String.fromCodePoint(0xE01E0 + i);
+                  tempCtx.fillText(testText, 0, 0);
+                }
+
+                // --- 新增：延遲 200 毫秒後，執行原本的第二次掃描 ---
+                setTimeout(function() {
+                  detectUniqueVariantsAndBuild(currentChar);
+                }, 50);
+
+              });
+            }
+          })
+          .getSelectedChar();
+      }
+
+      function detectUniqueVariantsAndBuild(char) {
+        const canvas = document.createElement('canvas');
+        canvas.width = 80;
+        canvas.height = 80;
+        const ctx = canvas.getContext('2d', { willReadFrequently: true });
+        
+        ctx.font = "50px 'Bpmf Zihi Kai Std'"; 
+        ctx.textBaseline = "top";
+        ctx.fillStyle = "black";
+
+        let uniqueVariants = [];
+
+        for (let i = 0; i <= 5; i++) {
+          let testText = char;
+          if (i > 0) testText += String.fromCodePoint(0xE01E0 + i);
+
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.fillText(testText, 10, 10);
+          
+          let currentPixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+          
+          let isDuplicate = false;
+          for (let uv of uniqueVariants) {
+            if (arePixelsEqual(currentPixels, uv.pixels)) {
+              isDuplicate = true;
+              break;
+            }
+          }
+
+          if (!isDuplicate) {
+            uniqueVariants.push({
+              level: i,
+              text: testText,
+              pixels: currentPixels
+            });
+          }
+        }
+
+        let html = '';
+        uniqueVariants.forEach(uv => {
+          let labelText = (uv.level === 0) ? "預設讀音" : "讀音 " + uv.level;
+          html += `
+            <button class="btn-variant" onclick="applyVariant(${uv.level})">
+              <div class="magic-font">${uv.text}</div>
+              <div class="variant-label">${labelText}</div>
+            </button>
+          `;
+        });
+        
+        document.getElementById('dynamic-buttons').innerHTML = html;
+        showStatus('success', `✅ 「${char}」共有 ${uniqueVariants.length} 種讀音`);
+      }
+
+      function arePixelsEqual(arr1, arr2) {
+        for (let i = 0; i < arr1.length; i++) {
+          if (arr1[i] !== arr2[i]) return false;
+        }
+        return true;
+      }
+
+      function applyVariant(level) {
+        showStatus('working', '⏳ 修改中...');
+        let payload = { baseChar: currentChar, variantLevel: level };
+
+        google.script.run
+          .withSuccessHandler(function(msg) {
+            showStatus('success', '✅ ' + msg);
+          })
+          .withFailureHandler(function(err) {
+            showStatus('error', '❌ ' + err.message);
+          })
+          .changePhonetic(payload);
+      }
+
+      function showStatus(type, msg) {
+        var box = document.getElementById('status-box');
+        box.className = 'status-' + type;
+        box.innerText = msg;
+      }
+    </script>
+
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0 15px 0;">
+
+    <div style="text-align: center; font-family: sans-serif;">
+      <div style="font-size: 13px; margin-bottom: 12px;">
+        <a href="https://brianhung0975.github.io/Poyinzi/index.html" target="_blank" style="color: #1a73e8; text-decoration: none; font-weight: bold;">🌐 官方網站 & 說明</a>
+        <span style="color: #dadce0; margin: 0 8px;">|</span>
+        <a href="https://forms.gle/PdeWb9z8v6pLjBLv7" target="_blank" style="color: #1a73e8; text-decoration: none; font-weight: bold;">📣 意見回饋</a>
+      </div>
+
+      <div style="font-size: 10px; color: #80868b; line-height: 1.6;">
+        <p style="margin: 5px 0;">版本 v1.2.0 | BrianHung</p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "timeZone": "Asia/Taipei",
+  "dependencies": {},
+  "exceptionLogging": "STACKDRIVER",
+  "oauthScopes": [
+    "https://www.googleapis.com/auth/documents.currentonly",
+    "https://www.googleapis.com/auth/script.container.ui"
+  ],
+  "runtimeVersion": "V8",
+  "addOns": {
+    "common": {
+      "name": "破音字標注 Poyinzi",
+      "logoUrl": "https://brianhung0975.github.io/Poyinzi/logo.png",
+      "useLocaleFromApp": true
+    },
+    "docs": {
+      "homepageTrigger": {
+        "runFunction": "onOpen"
+      }
+    }
+  }
+}
