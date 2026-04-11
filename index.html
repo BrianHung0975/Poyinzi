@@ -2,29 +2,109 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="X2s4MaW24voWbOD4_dw6heNhtnlnijRFmhwp71yTvvg" />
-    <title>破音字標注 Poyinzi - 官方網站</title>
+    <title>破音字標注 Poyinzi - 官方網站 & 支援中心</title>
     <style>
-        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 20px; }
-        h1 { color: #1a73e8; }
-        .nav { background: #f8f9fa; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.7; color: #3c4043; max-width: 900px; margin: 0 auto; padding: 40px 20px; background-color: #f8f9fa; }
+        .container { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 1px 3px rgba(60,64,67,0.3); }
+        h1 { color: #1a73e8; font-size: 32px; text-align: center; margin-bottom: 10px; }
+        h2 { color: #1a73e8; border-bottom: 2px solid #e8f0fe; padding-bottom: 8px; margin-top: 40px; }
+        .nav { display: flex; justify-content: center; gap: 20px; margin-bottom: 30px; padding: 15px; background: #e8f0fe; border-radius: 8px; }
+        .nav a { color: #1a73e8; text-decoration: none; font-weight: bold; }
+        .nav a:hover { text-decoration: underline; }
+        .hero { text-align: center; padding: 20px 0; background: #fff; margin-bottom: 20px; }
+        .eng-text { display: block; color: #5f6368; font-style: italic; font-size: 0.95rem; margin-bottom: 8px; }
+        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+        .feature-item { padding: 15px; border: 1px solid #e8eaed; border-radius: 8px; }
+        .step-list { background: #fff; padding: 20px; border-left: 4px solid #34a853; margin: 20px 0; }
+        .terms-box { font-size: 0.9rem; color: #5f6368; background: #f1f3f4; padding: 25px; border-radius: 8px; height: 300px; overflow-y: scroll; border: 1px solid #dadce0; }
+        footer { text-align: center; margin-top: 50px; font-size: 14px; color: #70757a; }
     </style>
 </head>
 <body>
-    <h1>破音字標注 Poyinzi</h1>
-    
-    <div class="nav">
-        <a href="privacy.html">隱私權政策 (Privacy Policy)</a> | 
-        <a href="https://github.com/brianhung0975/Poyinzi" target="_blank">支援與回饋</a>
-    </div>
+
+<div class="container">
+    <header class="hero">
+        <h1>破音字標注 Poyinzi</h1>
+        <p><strong>解決 Google Docs 考卷排版的終極工具</strong></p>
+        <span class="eng-text">The ultimate solution for phonetic layout in Google Docs.</span>
+    </header>
+
+    <nav class="nav">
+        <a href="privacy.html">隱私權政策 (Privacy Policy)</a>
+        <a href="#how-to-use">使用說明 (Instructions)</a>
+        <a href="#terms">服務條款 (Terms)</a>
+        <a href="https://github.com/brianhung0975/Poyinzi" target="_blank">支援與回饋 (Support)</a>
+    </nav>
 
     <section>
-        <h2>關於此工具 (About This Tool)</h2>
-        <p>「破音字標注 Poyinzi」是一款專為 Google Docs 設計的擴充功能。主要功能是協助教育工作者在編輯國語考卷時，能一鍵將文字轉換為「字嗨注音標楷體」，並透過智慧側邊欄快速選擇與校正破音字。本工具完全在本地運行，旨在提升出題效率與準確性。</p>
+        <h2>✨ 為什麼選擇我們？ (Why Choose Us?)</h2>
+        <p>需要 Google Docs 的同步便利，又需要 Word 的注音標注功能嗎？寫教案不想再慢慢手打注音？那你一定要試試這款專為老師設計的工具！</p>
+        <span class="eng-text">Need Google Docs sync with Word-style phonetics? Tired of typing Zhuyin manually for lesson plans? This tool is built specifically for teachers!</span>
+        
+        <div class="feature-grid">
+            <div class="feature-item">
+                <strong>🎨 一鍵套用注音字型</strong><br>
+                <span class="eng-text">One-click phonetic font application.</span>
+            </div>
+            <div class="feature-item">
+                <strong>🔍 智慧掃描破音字</strong><br>
+                <span class="eng-text">Smart detection of heteronyms.</span>
+            </div>
+            <div class="feature-item">
+                <strong>✅ 即時校正面板</strong><br>
+                <span class="eng-text">What-you-see-is-what-you-get correction panel.</span>
+            </div>
+            <div class="feature-item">
+                <strong>☁️ 完全本地運算</strong><br>
+                <span class="eng-text">100% Local processing for data privacy.</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-to-use">
+        <h2>📖 使用說明 (How to Use)</h2>
+        <div class="step-list">
+            <ol>
+                <li>開啟一份 Google 文件。<br><span class="eng-text">Open a Google Doc.</span></li>
+                <li>點擊上方選單的 「擴充功能」 (Extensions)。<br><span class="eng-text">Go to "Extensions" in the top menu.</span></li>
+                <li>找到 「破音字標注 Poyinzi」 並點擊 「開啟破音字校正」。<br><span class="eng-text">Find "Poyinzi" and click "Open Correction Panel".</span></li>
+                <li>在文件中反白選取文字。<br><span class="eng-text">Highlight the text in your document.</span></li>
+                <li>在側邊欄點擊「讀取」，即可開始體驗智慧校正！<br><span class="eng-text">Click "Read" in the sidebar to start intelligent correction!</span></li>
+            </ol>
+        </div>
+    </section>
+
+    <section id="terms">
+        <h2>📜 服務條款 (Terms of Service)</h2>
+        <div class="terms-box">
+            <p>歡迎使用「破音字標注 Poyinzi」(以下簡稱「本外掛」)。當您安裝或使用本外掛時，即表示您同意以下條款：</p>
+            <span class="eng-text">By installing "Poyinzi", you agree to the following terms:</span>
+
+            <p><strong>1. 服務內容 (Service Description)</strong><br>
+            本外掛為一個輔助教學工具，旨在提供 Google 文件中的注音字型套用與破音字校正功能。本服務完全免費提供。<br>
+            <span class="eng-text">This is a teaching aid for phonetic font application in Google Docs. The service is provided for free.</span></p>
+
+            <p><strong>2. 使用規範 (Use of Service)</strong><br>
+            您可以將本外掛用於教育、個人或商業用途。您不得嘗試破解、反編譯或干擾本外掛運作。<br>
+            <span class="eng-text">You may use it for educational, personal, or commercial purposes. Reverse engineering is prohibited.</span></p>
+
+            <p><strong>3. 免責聲明 (Disclaimer)</strong><br>
+            <strong>重要：</strong> 本外掛依「現況」提供。開發者不保證注音轉換結果 100% 正確。使用者在列印考卷前，應負起最後校對之責任。對於因使用本外掛而產生的任何教學失誤、成績爭議，開發者不承擔法律責任。<br>
+            <span class="eng-text">IMPORTANT: This tool is provided "as-is". The developer does not guarantee 100% accuracy. Users are responsible for final proofreading. The developer is not liable for any grading disputes or errors.</span></p>
+
+            <p><strong>4. 智慧財產權 (Intellectual Property)</strong><br>
+            程式碼版權歸開發者「洪楷量 (Hung, Kai-Liang)」所有。「Bpmf Zihi Kai Std」字型版權歸其原始作者所有。<br>
+            <span class="eng-text">Code copyright belongs to Kai-Liang Hung. Font copyright belongs to the original author.</span></p>
+        </div>
     </section>
 
     <footer>
-        <p>© 2026 破音字標注 Poyinzi | 開發者：洪楷量 (Hung, Kai-Liang)</p>
+        <p>© 2026 破音字標注 Poyinzi | 開發者：洪楷量 (Hung, Kai-Liang)<br>
+        聯絡信箱：brianhung0975@gmail.com</p>
     </footer>
+</div>
+
 </body>
 </html>

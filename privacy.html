@@ -2,17 +2,77 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>隱私權政策 - 破音字標注 Poyinzi</title>
-    <style>body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 20px; }</style>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.7; color: #3c4043; max-width: 850px; margin: 0 auto; padding: 40px 20px; background-color: #f8f9fa; }
+        .container { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 1px 3px rgba(60,64,67,0.3); }
+        h1 { color: #1a73e8; font-size: 28px; border-bottom: 1px solid #e8eaed; padding-bottom: 15px; }
+        h2 { color: #202124; font-size: 20px; margin-top: 30px; border-left: 4px solid #1a73e8; padding-left: 15px; }
+        .eng-text { color: #5f6368; font-style: italic; font-size: 0.95rem; margin-bottom: 10px; display: block; }
+        .compliance-box { background-color: #e8f0fe; border: 1px solid #1a73e8; padding: 15px; border-radius: 4px; margin: 20px 0; font-size: 0.9rem; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        .footer { margin-top: 40px; font-size: 14px; color: #70757a; text-align: center; }
+        a { color: #1a73e8; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
+
+<div class="container">
     <h1>隱私權政策 (Privacy Policy)</h1>
-    <p>本工具「破音字標注 Poyinzi」承諾保護您的隱私：</p>
-    <ul>
-        <li><strong>不收集個資：</strong> 本外掛不會收集、存儲或傳送任何使用者文件內容。</li>
-        <li><strong>權限用途：</strong> 申請權限僅用於在當前文件中修改文字樣式與注音符號。</li>
-        <li><strong>無第三方分享：</strong> 絕不與任何第三方分享數據。</li>
-    </ul>
-    <p><a href="index.html">返回首頁</a></p>
+    <p>最後更新日期：2026年4月11日</p>
+
+    <div class="compliance-box">
+        <strong>Google API Services User Data Policy Compliance:</strong><br>
+        本外掛對從 Google API 接收到的資訊的使用與處理，將遵循 <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank">Google API 服務使用者資料政策</a>，包括其中的「有限使用」要求。
+    </div>
+
+    <section>
+        <h2>1. 資訊收集 (Information Collection)</h2>
+        <span class="eng-text">This Add-on does NOT collect, store, or transmit any personal data or document content to external servers. All text processing and phonetic conversions are performed locally within the user's Google Apps Script environment.</span>
+        <p>本外掛「破音字標注 Poyinzi」<strong>不會</strong>收集、儲存或傳送任何個人資料或文件內容至外部伺服器。所有的文字掃描、處理與注音轉換均在您個人的 Google Apps Script 環境內本地執行，確保您的文件隱私不外洩。</p>
+    </section>
+
+    <section>
+        <h2>2. 權限與範圍 (Permissions and Scopes)</h2>
+        <span class="eng-text">The Add-on requests the following permissions only to provide its core functionality:</span>
+        <ul>
+            <li><strong>https://www.googleapis.com/auth/documents.currentonly</strong>
+                <br>用以讀取並修改您目前選取的文字，以便套用注音字體與修正讀音。 (To read and modify the selected text for phonetic correction in the active document.)
+            </li>
+            <li><strong>https://www.googleapis.com/auth/script.container.ui</strong>
+                <br>用以顯示側邊欄介面，讓您能與工具互動並選擇正確的讀音。 (To display the sidebar for user interaction and phonetic selection.)
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>3. 第三方服務 (Third-Party Services)</h2>
+        <span class="eng-text">The Add-on uses Google Fonts to render the "Bpmf Zihi Kai Std" font. No data is shared with other third parties.</span>
+        <p>本外掛僅使用 Google Fonts 服務來載入「字嗨注音標楷體 (Bpmf Zihi Kai Std)」以正確顯示注音。除此之外，我們<strong>不會</strong>與任何第三方共享您的數據或文件內容。</p>
+    </section>
+
+    <section>
+        <h2>4. 資料保留 (Data Retention)</h2>
+        <span class="eng-text">Since we do not collect any data, no data retention policy applies.</span>
+        <p>由於本外掛不具備後端資料庫，且不收集任何使用者資訊，因此不適用資料保留政策。您的資料始終留在您的 Google 文件中。</p>
+    </section>
+
+    <section>
+        <h2>5. 聯絡方式 (Contact)</h2>
+        <span class="eng-text">If you have any questions about this Privacy Policy, please contact the developer:</span>
+        <p>
+            <strong>開發者：</strong> 洪楷量 (Hung, Kai-Liang)<br>
+            <strong>Email：</strong> <a href="mailto:brianhung0975@gmail.com">brianhung0975@gmail.com</a>
+        </p>
+    </section>
+
+    <div class="footer">
+        <p><a href="index.html">← 返回首頁 (Back to Home)</a></p>
+    </div>
+</div>
+
 </body>
 </html>
